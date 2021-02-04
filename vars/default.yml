@@ -1,2 +1,9 @@
 ---
 certbot_package: certbot
+certbot_methods:
+  standalone:
+    parameters: --standalone
+    additional_packages: []
+  route53:
+    parameters: --dns-route53 --dns-route53-propagation-seconds 30
+    additional_packages: ["certbot-dns-route53"]

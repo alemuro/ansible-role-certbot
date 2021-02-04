@@ -4,6 +4,10 @@
     path: /etc/letsencrypt/live/{{ cert_item.domains | first | replace('*.', '') }}/cert.pem
   register: letsencrypt_cert
 
+- name: Install additional plugins
+  pip:
+    name: "{{ certbot_methods[certbot_create_method]["additional_packages"] }}"
+
 - name: Stop services to allow certbot to generate a cert.
   service:
     name: "{{ item }}"
